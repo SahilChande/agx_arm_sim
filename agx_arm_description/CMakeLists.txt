@@ -16,6 +16,7 @@ install(
     rviz
     scripts
     meshes
+    mujoco
   DESTINATION share/${PROJECT_NAME}/
 )
 

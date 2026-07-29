@@ -1,6 +1,6 @@
 # Moveit2 README
 
-本目录为 AgileX 系列机械臂的 MoveIt2 运动规划配置包集合，为每个机械臂型号提供了独立的 MoveIt2 配置，包含运动学求解、碰撞检测、轨迹规划的完整配置，支持机械臂的运动规划开发，同时可与 Isaac Sim 完成联合仿真。
+本目录为 AgileX 系列机械臂的 MoveIt2 运动规划配置包集合，为每个机械臂型号提供了独立的 MoveIt2 配置，包含运动学求解、碰撞检测、轨迹规划的完整配置，支持机械臂的运动规划开发，同时可与Gazebo、Isaac Sim 完成联合仿真。
 
 ## 目录结构
 
@@ -16,51 +16,33 @@
 
 ### 1. 单独启动 MoveIt2 演示调试
 
-你可以直接启动 MoveIt2 的演示节点，在 RViz2 中完成运动规划的调试，无需启动外部仿真环境：
+可以直接启动 MoveIt2 的演示节点，在 RViz2 中完成运动规划的调试，无需启动外部仿真环境：
 
 ```bash
 # 启动 Nero 机械臂的 MoveIt2 演示节点
 ros2 launch nero_gripper_moveit_config demo.launch.py
 ```
 
-启动完成后，RViz2 会自动加载 Nero 机械臂的模型，你可以使用 MoveIt2 提供的交互标记，拖动机械臂的末端执行器，即可自动完成运动规划，验证规划效果。
-
-### 2. 与 Isaac Sim 联合仿真
-
-你可以将 MoveIt2 与 Isaac Sim 联合，完成高保真的物理仿真，实现运动规划的真实物理效果测试，具体步骤如下：
-
-# Moveit2 README
-
-本目录为 AgileX 系列机械臂的 MoveIt2 运动规划配置包集合，为每个机械臂型号提供了独立的 MoveIt2 配置，包含运动学求解、碰撞检测、轨迹规划的完整配置，支持机械臂的运动规划开发，同时可与 Isaac Sim 完成联合仿真。
-
-## 目录结构
-
-本目录下为各个型号的独立 MoveIt2 配置包，每个配置包对应一个机械臂型号，包含了该型号的运动规划相关配置：
-
-- `nero_gripper_moveit_config`：Nero 机械臂的 MoveIt2 配置包
-- `piper_gripper_moveit_config`：Piper 机械臂的 MoveIt2 配置包
-- `piper_h_gripper_moveit_config`：Piper H 机械臂的 MoveIt2 配置包
-- `piper_l_gripper_moveit_config`：Piper L 机械臂的 MoveIt2 配置包
-- `piper_x_gripper_moveit_config`：Piper X 机械臂的 MoveIt2 配置包
-
-## 以 Nero 为例的使用方法
-
-### 1. 单独启动 MoveIt2 演示调试
-
-你可以直接启动 MoveIt2 的演示节点，在 RViz2 中完成运动规划的调试，无需启动外部仿真环境：
-
-```bash
-# 启动 Nero 机械臂的 MoveIt2 演示节点
-ros2 launch nero_gripper_moveit_config demo.launch.py
-```
-
-启动完成后，RViz2 会自动加载 Nero 机械臂的模型，你可以使用 MoveIt2 提供的交互标记，拖动机械臂的末端执行器，即可自动完成运动规划，验证规划效果。
+启动完成后，RViz2 会自动加载 Nero 机械臂的模型，可以使用 MoveIt2 提供的交互标记，拖动机械臂的末端执行器，即可自动完成运动规划，验证规划效果。
 
 ![](./img/nero_moveit.png)
 
-### 2. 与 Isaac Sim 联合仿真
+### 2. 与Gazebo联合仿真
 
-你可以将 MoveIt2 与 Isaac Sim 联合，完成高保真的物理仿真，实现运动规划的真实物理效果测试，具体步骤如下：
+将 MoveIt2 与 Gazebo联合仿真，实现运动规划，具体步骤如下：
+
+```bash
+# 启动联合仿真
+ros2 launch nero_gripper_moveit_config gazebo_moveit.launch.py 
+```
+
+启动完成后，Gazebo和RViz2 会自动加载 Nero 机械臂的模型，可以使用 MoveIt2 提供的悬浮球，拖动机械臂的末端执行器，进行规划运动，Gazebo中的模型也会同步运动
+
+![](./img/nero_gazebo.png)
+
+### 3. 与 Isaac Sim 联合仿真
+
+可以将 MoveIt2 与 Isaac Sim 联合，完成高保真的物理仿真，实现运动规划的真实物理效果测试，具体步骤如下：
 
 #### 步骤 1：启动 Isaac Sim 并加载模型
 
